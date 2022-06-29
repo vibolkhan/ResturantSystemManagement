@@ -13,4 +13,20 @@ export class Room {
         }
         return [];
     }
+
+    findFreeTable() {
+        let result:Table[] = [];
+        for (let table of this.tables) {
+            if (table.isTableFree()) {
+                result.push(table);
+            }
+        }
+        return result;
+    }
+
+    isRoomFree() {
+        for (let table of this.tables) {
+            return (table.isTableFree())
+        }
+    }
 }

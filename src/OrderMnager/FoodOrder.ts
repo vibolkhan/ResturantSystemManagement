@@ -1,4 +1,4 @@
-import { FoodItem } from "./Food/FoodItem";
+import { FoodItem } from "../Kitchen/Food/FoodItem";
 
 export class FoodOrder{
     constructor(private quantity: number, private foodItem: FoodItem) {

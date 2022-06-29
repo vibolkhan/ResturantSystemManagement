@@ -1,24 +1,15 @@
-import { FoodItem } from "./Food/FoodItem";
-import { Menu } from "./Menu";
+import { Waiter } from "../HumanManager/Staff/Waiter";
 import { Order } from "./Order";
 
 export class OrderManager {
     private orders: Order[] = [];
-    menu: Menu = new Menu();
+    private revenue: number = 0;
 
-    addOrder(...orderItem: Order[]) {
-        for (let order of orderItem) {
-            for (let food of order.getFoodOrders()) {
-                if (this.menu.getQuality(food.getFood()) >= food.getQuantity()) {
-                    this.orders = this.orders.concat(orderItem);
-                    for (let item of this.menu.getFoods()) {
-                        item.decreaseQuantity(food);
-                    }
-                    return "Order successed";
-                }
-            }
-        } 
-        return "Sorry, we don't have enough foods";
+    setRevenue() {
+        for (let order of this.orders) {
+            this.revenue += order.getPrice();
+        }
+        return this.revenue;
     }
 
     cancelOrder(orderItem: Order) {
@@ -29,7 +20,31 @@ export class OrderManager {
         }
     }
 
+    addOrder(order: Order) {
+        this.orders.push(order);
+    }
+
     getOrder() {
         return this.orders;
+    }
+
+    getNumberOfOrder(waiter: Waiter) {
+        let numberOfOrder = 0;
+        for (let order of this.orders) {
+            if (order.getWaiter().isEquals(waiter)) {
+                numberOfOrder++;
+            }
+        }
+        return numberOfOrder;
+    }
+
+    increaseSalaryWaiter(waiter: Waiter) {
+        if (this.getNumberOfOrder(waiter) > 30) {
+            waiter.increaseSalary(20);
+        } else if (this.getNumberOfOrder(waiter) > 20){
+            waiter.increaseSalary(10);
+        } else if (this.getNumberOfOrder(waiter) > 2){
+            waiter.increaseSalary(5);
+        }
     }
 }   
