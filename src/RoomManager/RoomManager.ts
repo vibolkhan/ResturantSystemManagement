@@ -7,14 +7,15 @@ export class RoomManager {
         this.rooms.concat(rooms);
     }
     
-    getRoom() {
+    getRoom(): Room[] {
+        let result: Room[] = [];
         for (let room of this.rooms) {
-            return room;
+            result.push(room);
         }
-        return [];
+        return result;
     }
 
-    findFreeRoom() {
+    findFreeRoom():Room[] {
         let result:Room[] = [];
         for (let room of this.rooms) {
             if (room.isRoomFree()) {

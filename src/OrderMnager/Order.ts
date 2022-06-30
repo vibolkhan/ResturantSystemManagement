@@ -1,19 +1,20 @@
 import { Customer } from "../HumanManager/Customer";
 import { Waiter } from "../HumanManager/Staff/Waiter";
 import { Table } from "../RoomManager/Table";
-import { FoodOrder } from "./FoodOrder";
+import { OrderItem } from "./OrderItem";
 
 export class Order {
-    private foodOrders: FoodOrder[] = [];
+    private foodOrders: OrderItem[] = [];
     private customers: Customer[] = [];
     private isPaid: boolean = false;
+    private isFinished: boolean = false;
     private date:string = new Date().toString();
 
     constructor (private id: number, private table: Table, private waiter: Waiter, ...customers: Customer[]) {
         this.customers = customers;
     }
 
-    addFood(...foodOrder: FoodOrder[]) {
+    addFood(...foodOrder: OrderItem[]) {
         this.foodOrders = this.foodOrders.concat(foodOrder);
     }
 
@@ -25,7 +26,7 @@ export class Order {
         return price;
     }
 
-    getFoodOrders() {
+    getOrderItem() {
         return this.foodOrders;
     }
 
@@ -35,7 +36,7 @@ export class Order {
 
     createRecipe() {
         let result = "";
-        result += "_____ PNC Resturant _____" +"\n";
+        result += "_________ PNC Resturant _________" +"\n";
         for (let food of this.foodOrders) {
             result += food.getFood().getFoodName() + ": ";
             result += food.getFood().getPrice().toString()+ " Dollars" + '\n';

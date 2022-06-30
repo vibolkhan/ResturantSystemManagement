@@ -1,7 +1,6 @@
-import { Order } from "../OrderMnager/Order";
 import { Category, FoodItem } from "./Food/FoodItem";
 
-export class Kitchen {
+export class Menu {
     private foodItems: FoodItem[] = [];
 
     getFoods() {
@@ -12,6 +11,23 @@ export class Kitchen {
         this.foodItems = this.foodItems.concat(foods);
     }
 
+    getQuality(other: FoodItem) {
+        for (let food of this.foodItems) {
+            if (food.getFoodName() === other.getFoodName()) {
+                return food.getQuantity();
+            }
+        }
+        return 0;
+    }
+
+    getName(other: FoodItem) {
+        for (let food of this.foodItems) {
+            if (food.getFoodName() === other.getFoodName()) {
+                return food.getFoodName();
+            }
+        }
+    }
+
     getFoodByCategory(category: Category) {
         let result:FoodItem[] = [];
         for (let food of this.foodItems) {
@@ -20,5 +36,5 @@ export class Kitchen {
             }
         }
         return result;
-    }   
+    }
 }

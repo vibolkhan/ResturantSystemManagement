@@ -43,7 +43,7 @@ export class OrderManager {
             waiter.increaseSalary(20);
         } else if (this.getNumberOfOrder(waiter) > 20){
             waiter.increaseSalary(10);
-        } else if (this.getNumberOfOrder(waiter) > 2){
+        } else if (this.getNumberOfOrder(waiter) >= 2){
             waiter.increaseSalary(5);
         }
     }

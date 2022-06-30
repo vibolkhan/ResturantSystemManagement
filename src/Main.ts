@@ -3,15 +3,16 @@ import { Gender } from "./HumanManager/Person";
 import { Staff, StaffCetegory } from "./HumanManager/Staff/Staff";
 import { Waiter } from "./HumanManager/Staff/Waiter";
 import { Drink } from "./Kitchen/Food/Drink";
-import { DRINK, MEAL, DESSERT, VEGETARIAN} from "./Kitchen/Food/FoodItem";
+import { DRINK, MEAL, DESSERT, VEGETARIAN, Category} from "./Kitchen/Food/FoodItem";
 import { Meal } from "./Kitchen/Food/Meal";
 import { Dessert } from "./Kitchen/Food/Dessert";
 import { Vegetarain } from "./Kitchen/Food/Vegetarain";
-import { FoodOrder } from "./OrderMnager/FoodOrder";
+import { OrderItem } from "./OrderMnager/OrderItem";
 import { Order } from "./OrderMnager/Order";
 import { Resturant } from "./Resturant";
 import { Room } from "./RoomManager/Room";
 import { Table } from "./RoomManager/Table";
+import { Chef } from "./HumanManager/Staff/Chef";
 
 let resturant = new Resturant('PNC Resturant','Phnom Penh');
 
@@ -24,11 +25,11 @@ let dophy = new Customer(4);
 // staffs
 let casher1 = new Staff(3,"casher1",'0312253996',Gender.MALE,StaffCetegory.CASHER);
 let cleaner1 = new Staff(4,"cleaner1",'07778881',Gender.FEMALE,StaffCetegory.CLEANER);
-let waiter1 = new Waiter(5,"waiter1",'07778881',Gender.FEMALE);
-let waiter2 = new Waiter(6,"waiter2",'07778881',Gender.FEMALE);
-let chef = new Staff(7, "chef", '07778881',Gender.FEMALE,StaffCetegory.CHEF);
+let waiter1 = new Waiter(1,"waiter1",'07778881',Gender.FEMALE);
+let waiter2 = new Waiter(2,"waiter2",'07778881',Gender.FEMALE);
+let chef = new Chef(7, "chef", '07778881',Gender.FEMALE);
 
-// add staff
+// test1 add staff
 resturant.hr.addStaff(cleaner1, waiter1, casher1, chef, waiter2);
 resturant.hr.addCustomer(dyna, dada, dophy, dana);
 
@@ -48,6 +49,7 @@ let sweet2 = new Dessert(7, 6, DESSERT.CAKE);
 let drink1 = new Drink(7, 6, DRINK.COFFEE);
 let drink2 = new Drink(7, 6, DRINK.GREENTEA);
 
+// test 2 add food to Kitchen
 resturant.kitchen.addFood(meal1, meal2, vegetarain1, vegetarain2, sweet1, sweet2, drink1, drink2);
 
 // rooms
@@ -62,7 +64,7 @@ table2.addCustomer(dyna,dophy);
 table1.removeCustomers();
 // add table to room
 room1.addTable(table1,table2);
-// add room to resturant
+// test 3 add room to resturant
 resturant.room.addRoom(room1, room2);
 
 // orders
@@ -71,31 +73,32 @@ let order2 = new Order(2, table2, waiter1, dana, dophy);
 let order3 = new Order(3, table1, waiter2, dophy, dada);
 
 // create orders and add food to order
-let foodOrder1 = new FoodOrder(6, meal1);
-let foodOrder2 = new FoodOrder(2, drink1);
-let foodOrder3 = new FoodOrder(2, meal2);
+let foodOrder1 = new OrderItem(6, meal1);
+let foodOrder2 = new OrderItem(2, drink1);
+let foodOrder3 = new OrderItem(2, meal2);
 
 order1.addFood(foodOrder1, foodOrder2, foodOrder3);
 order2.addFood(foodOrder1, foodOrder3);
 order3.addFood(foodOrder3, foodOrder1);
 
-
-
-// add order to resturant
+// test 5 add order to resturant
 resturant.order.addOrder(order1);
 resturant.order.addOrder(order2);
-// resturant.order.addOrder(order3);
+resturant.order.addOrder(order3);
 
-// resturant.order.cancelOrder(order2)
+// test 6 payment
+// order1.payMent(90);
+// console.log(order1.payMent(90));
+// console.log(resturant.order.getOrder());
+// console.log(order2.payMent(9));
 
-console.log(resturant.order.setRevenue());
+// test 7 cancle order
+// resturant.order.cancelOrder(order3);
+// console.log(resturant.order.getOrder());
 
+// test 8 get staff salary
+// resturant.order.increaseSalaryWaiter(waiter1);
+// console.log(resturant.hr.getStaff());
 
-// resturant.order.addOrder(order3);
-
-
-// get food by cetegory
-
-// 
-
-// console.log(resturant);
+// test 9 get food by category
+// console.log(resturant.kitchen.getFoodByCategory(Category.DRINK));

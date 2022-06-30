@@ -1,4 +1,4 @@
-import { OrderItem } from "../../OrderMnager/OrderItem";
+import { OrderItem } from "../OrderItem";
 import { Category, FoodItem, VEGETARIAN } from "./FoodItem";
 
 export class Vegetarain extends FoodItem {

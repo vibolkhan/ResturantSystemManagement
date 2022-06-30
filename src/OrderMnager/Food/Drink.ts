@@ -1,11 +1,11 @@
-import { OrderItem } from "../../OrderMnager/OrderItem";
-import { Category, FoodItem, VEGETARIAN } from "./FoodItem";
+import { OrderItem } from "../OrderItem";
+import { Category, DRINK, FoodItem, MEAL } from "./FoodItem";
 
-export class Vegetarain extends FoodItem {
-    constructor(quantity: number, price: number, private foodName: VEGETARIAN) {
-        super (quantity, Category.VEGETARIAN, price, )
+export class Drink extends FoodItem {
+    constructor(quantity: number, price: number, private foodName: DRINK) {
+        super (quantity, Category.DRINK, price, )
     }
-
+    
     isEquals(other: FoodItem): boolean {
         return (other.getFoodName() == this.getFoodName());
     }
@@ -23,7 +23,7 @@ export class Vegetarain extends FoodItem {
         return this.quantity;
     }
     getCategory() {
-        return Category.VEGETARIAN;
+        return Category.DRINK;
     }
     decreaseQuantity(other: OrderItem) {
         if (this.foodName === other.getFood().getFoodName()) {

@@ -1,4 +1,4 @@
-import { OrderItem } from "../../OrderMnager/OrderItem";
+import { OrderItem } from "../OrderItem";
 
 export enum Category {
     DRINK = "Drink",

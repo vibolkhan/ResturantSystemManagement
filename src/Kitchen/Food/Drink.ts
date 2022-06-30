@@ -1,4 +1,4 @@
-import { FoodOrder } from "../../OrderMnager/FoodOrder";
+import { OrderItem } from "../../OrderMnager/OrderItem";
 import { Category, DRINK, FoodItem, MEAL } from "./FoodItem";
 
 export class Drink extends FoodItem {
@@ -25,7 +25,7 @@ export class Drink extends FoodItem {
     getCategory() {
         return Category.DRINK;
     }
-    decreaseQuantity(other: FoodOrder) {
+    decreaseQuantity(other: OrderItem) {
         if (this.foodName === other.getFood().getFoodName()) {
             this.quantity -= other.getQuantity();
         }
